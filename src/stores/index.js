@@ -1,4 +1,5 @@
 import { defineStore } from "pinia";
+import api from '../services/api'
 
 export const useStore = defineStore('main', {
   state: () => ({
@@ -9,7 +10,7 @@ export const useStore = defineStore('main', {
   actions: {
     async getUsers(start) {
       this.loading = true;
-      const repository = RepositoryFactory.get('users');
+      const response = api.get('users');
       try {
         this.users = await repository.get(start)
       } catch (error) {
